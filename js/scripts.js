@@ -1,30 +1,36 @@
-let pokemonList = [{
+const pokemonList = [
+  {
     name: 'Pikachu',
-    height: 0.4,
-    category: 'mouse',
-    type: 'electric',
-    weaknesses: 'ground'
+    height: 4,
+    types: ['electric'],
+    category: 'mouse' 
   },
   {
     name: 'Bulbasaur',
-    height: 0.7,
-    category: 'seed',
-    type: ['grass', 'poison]'
-    weaknesses: ['fire', 'ice', 'psychic', 'flying']
+    height: 7,
+    types: ['grass', 'poison'],
+    category: 'seed'
   },
   {
-    name: 'Mewtwo',
-    height: 2,
-    category: 'genetic',
-    type: 'psychic'
-    weaknesses: ['ghost', 'dark', 'bug']
+      name: 'Mewtwo',
+    height: 20,
+    types: ['psychic'],
+    category: 'genetic'
   },
   {
     name: 'Charmander',
-    height: 0.6,
-    category: 'lizard'
-    type: 'fire'
-    weaknesses: ['water', 'ground', 'rock']
+    height: 2,
+    types: ['fire'],
+    category: 'Lizard'
   },
-];
+  
+]
+
+for (let i = 0; i < pokemonList.length; i++) {
+  if (pokemonList[i].height > 10) { // Highlighting special pokemon 
+    document.write('<p class="special">' + pokemonList[i].name, '(height: ' + pokemonList[i].height + ')-Wow! that\'s big</p>')
+  } else {
+    document.write('<p>' + pokemonList[i].name, '(height: ' + pokemonList[i].height + ')</p>')
+  }
+}
   
