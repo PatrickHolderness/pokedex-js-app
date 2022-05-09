@@ -1,7 +1,7 @@
 
-const pokemonRepository = (function () {
-  const pokemonList = [
-{
+let pokemonRepository = (function () {
+  let pokemonList = [
+    {
     name: 'Pikachu',
     height: 4,
     types: ['electric'],
@@ -26,28 +26,50 @@ const pokemonRepository = (function () {
     category: 'Lizard'
   },
   ];
-  function add (pokemon) {
-    pokemonList.push(pokemon);
+  function add(pokemon) {
+    if (
+      typeof pokemon === "object" &&
+      "name" in pokemon &&
+      "height" in pokemon &&
+      "types" in pokemon
+    ) {
+      pokemonList.push(pokemon);
+    } else {
+      console.log("pokemon is not correct");
+    }
   }
-
-  function getAll () {
+  function getAll() {
     return pokemonList;
   }
+  function addListItem(pokemon){
+    let pokemonList = document.querySelector(".pokemon-list");
+    let listpokemon = document.createElement("li");
+    let button = document.createElement("button");
+    button.innerText = pokemon.name;
+    button.classList.add("pokemon-list-button");
+    listpokemon.appendChild(button);
+    pokemonList.appendChild(listpokemon);
+    addEvent(button, pokemon);
+  }
+  function addEvent(button,pokemon) {
+    button.addEventListener('click', function() {
+      showDetails(pokemon);
+    });
+  }
+    function showDetails(pokemon) {
+        console.log(pokemon);
+    }
   return {
     add: add,
-    getAll: getAll
+    getAll: getAll,
+    addListItem: addListItem
   };
 })();
-console.log(pokemonRepository.getAll());
 
 pokemonRepository.add({ name: 'Overkwil', height: 24, types: ['dark', 'poison'], category: 'Pin cluster' });
 
 console.log(pokemonRepository.getAll());
 
 pokemonRepository.getAll().forEach(function (pokemon) {
-  if (pokemon.height > 10) {
-    document.write('<p class="special">' + pokemon.name, '(height: ' + pokemon.height + ')-Wow!-that\'s big</p>');
-  } else {
-    document.write('<p>' + pokemon.name, '(height: ' + pokemon.height + ')</p>');
-  }
+  pokemonRepository.addListItem(pokemon);
 });
