@@ -26,8 +26,11 @@ const pokemonList = [
   
 ];
 
-pokemonList.forEach(function (pokemon) {
-  document.write('<p>' + pokemon.name, '(height: ' + pokemon.height + ')</p>');
-  });
+for (let i = 0; i < pokemonList.length; i++)
+ if (pokemonList[i].height > 10)
+	document.write('<p>' + "Name: " + pokemonList[i].name + " Height: " + pokemonList[i].height + " Wow, that's big!" + '</p>');
+  else {
+    document.write('<p>' + "Name: " + pokemonList[i].name + " Height: " + pokemonList[i].height + "." + '</p>');
+  }
 
   
