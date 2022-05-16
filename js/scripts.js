@@ -1,75 +1,82 @@
 
 let pokemonRepository = (function () {
-  let pokemonList = [
-    {
-    name: 'Pikachu',
-    height: 4,
-    types: ['electric'],
-    category: 'mouse' 
-  },
-  {
-    name: 'Bulbasaur',
-    height: 7,
-    types: ['grass', 'poison'],
-    category: 'seed'
-  },
-  {
-      name: 'Mewtwo',
-    height: 20,
-    types: ['psychic'],
-    category: 'genetic'
-  },
-  {
-    name: 'Charmander',
-    height: 2,
-    types: ['fire'],
-    category: 'Lizard'
-  },
-  ];
-  function add(pokemon) {
-    if (
-      typeof pokemon === "object" &&
-      "name" in pokemon &&
-      "height" in pokemon &&
-      "types" in pokemon
-    ) {
-      pokemonList.push(pokemon);
-    } else {
-      console.log("pokemon is not correct");
-    }
-  }
+  let pokemonList= [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  
   function getAll() {
     return pokemonList;
   }
+  
+  function add(pokemon) {
+    pokemonList.push(pokemon);
+    }
+  
+
   function addListItem(pokemon){
-    let pokemonList = document.querySelector(".pokemon-list");
-    let listpokemon = document.createElement("li");
+    let list = document.querySelector(".pokemon-list");
+    let listItem = document.createElement("li");
     let button = document.createElement("button");
     button.innerText = pokemon.name;
     button.classList.add("pokemon-list-button");
-    listpokemon.appendChild(button);
-    pokemonList.appendChild(listpokemon);
-    addEvent(button, pokemon);
+    listItem.appendChild(button);
+    list.appendChild(listItem);
+    addListener(button, pokemon);
   }
-  function addEvent(button,pokemon) {
-    button.addEventListener('click', function() {
-      showDetails(pokemon);
-    });
-  }
-    function showDetails(pokemon) {
-        console.log(pokemon);
+
+  function addListener(button, pokemon) {
+
+  button.addEventListener('click', (event) => showDetails(pokemon));
     }
-  return {
-    add: add,
-    getAll: getAll,
-    addListItem: addListItem
-  };
-})();
 
-pokemonRepository.add({ name: 'Overkwil', height: 24, types: ['dark', 'poison'], category: 'Pin cluster' });
+    function showDetails(pokemon) {
+      loadDetails(pokemon).then( () => console.log(pokemon));
+    }
 
-console.log(pokemonRepository.getAll());
+    
+    function loadList() {
+      return fetch(apiUrl).then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        json.results.forEach(function (item) {
+             let pokemon = {
+             name: item.name,
+             detailsUrl: item.url
+          };
+          add(pokemon);
+        });
+      }).catch(function (e) {
+        console.error(e);
+      });
+    }
 
-pokemonRepository.getAll().forEach(function (pokemon) {
-  pokemonRepository.addListItem(pokemon);
+
+    function loadDetails(item) {
+      let url = item.detailsUrl;
+      return fetch(url).then(function (response) {
+        return response.json();
+      }).then(function (details) {
+        item.imageUrl = details.sprites.front_default;
+        item.height = details.height;
+        item.types = details.types;
+      }).catch(function (e) {
+        console.error(e);
+      });
+    }
+
+    return {
+      add: add,
+      getAll: getAll,
+      addListItem: addListItem,
+      loadList: loadList,
+      loadDetails: loadDetails,
+      showDetails: showDetails
+    };
+  })();
+
+
+pokemonRepository.loadList (). then(function() {
+  pokemonRepository.getAll().forEach(function(pokemon) {
+      pokemonRepository.addListItem(pokemon);
+  });
 });
+  
