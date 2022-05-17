@@ -92,8 +92,14 @@ let pokemonRepository = (function () {
         pokemonHeight.innerText = "Height: " + height;
   
         let pokemonTypes = document.createElement("p");
-        pokemonTypes.innerText = "Types: " + types.join(", ");
-  
+        let pokTypes = []
+
+        types.forEach(function (type) {
+          return pokTypes.push(type.type.name);
+        })
+        
+        pokemonTypes.innerText = "Types: " + pokTypes.join(", ");
+        
         let textContainer = document.createElement("div");
         textContainer.classList.add("modal__text-container");
         textContainer.appendChild(pokemonName);
