@@ -1,32 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang=en>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pokedex</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link 
+      rel="stylesheet" 
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+      crossorigin="anonymous"/>
+    <link 
+    href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" 
+    rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Pokédex</title>
+   </head>
   <body>
     
-    <header class="page-header">
-      <nav class="navbar navbar-dark ">
-          <a class="navbar-brand" href="#">
-              <img src="img/pokemon-logo.png" alt="logo" class="img">
-          </a>
-          <form class="form-inline">
-              <input class="form-control rounded" id="myInput" type="search" placeholder="Search" aria-label="Search" />
-          </form>
-          <div class="sr-only">Navigation bar</div>
-      </nav>
-  </header>
+    <div class="modal fade show" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Name</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Pokemon details go here.</p>
+          </div>
+          <div class="modal-footer">
+  
+          </div>
+        </div>
+      </div>
+    </div>
 
-				<h1>Pokédex</h1>
-			<ul class="pokemon-list"></ul>
-<button id=""show-modal">Show modal</button>
-			<div id="modal-container"></div>
-		</main>
+    <nav class="navbar navbar-dark ">
+          <img src="img/pokemon-logo.png" alt="logo" class="img">
+          <a class="navbar-brand" href="#">
+        </a>
+      <form class="form-inline">
+          <input class="form-control rounded" id="myInput" type="search" placeholder="Search" aria-label="Search" />
+      </form>
+      <div class="sr-only">Navigation bar</div>
+  </nav>
+    </nav>
+  </br>
+
+  
+
+    <div class="container">
+      <ul class="row pokemon-list mt-9 pl-6"></ul>
+    </div>
+
+    <script src="js/promise-polyfill.js"></script>
+    <script src="js/fetch-polyfill.js"></script>
     <script
         src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
@@ -39,8 +73,7 @@
          src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" 
          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
          crossorigin="anonymous"></script>
-    <script src="js/promise-polyfill.js"></script>
-    <script src="js/fetch-polyfill.js"></script>
+  
     <script src="js/scripts.js"></script>
   </body>
 </html>
