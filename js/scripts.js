@@ -29,7 +29,7 @@ let pokemonRepository = (function () {
     });
     //Add classes & attributes to list item
     button.classList.add('btn', 'btn-block', 'btn-outline-primary');
-    button.classList.add('m-1', 'bg-blue');
+    button.classList.add('m-1', 'bg-blue', 'text-capitalize');
     button.setAttribute('data-toggle', 'modal');
     button.setAttribute('data-target', '.modal');
 
@@ -60,11 +60,12 @@ let pokemonRepository = (function () {
       `<img class="modal-img mx-auto" src="${pokemon.svgUrl}" alt="Drawing of Pokemon ${pokemon.name}">`
     );
     let pokemonHeight = $(
-      `<p class="ml-4 mt-3 mb-0" "text-capitalize">Height: ${pokemon.height}</p>`
+      `<p class="ml-4 mt-3 mb-0">Height: ${pokemon.height}</p>`
     );
     let pokemonWeight = $(`<p class="ml-4 mb-0">Weight: ${pokemon.weight}</p>`);
     let pokemonTypes = $(
       `<p class="ml-4">Types: ${pokemon.types.join(', ')}</p>`
+      
     );
 
     // Append Pokemon Elements
@@ -130,6 +131,7 @@ let pokemonRepository = (function () {
     filterList,
   };
 })();
+
 
 // Create & display list of Pokemon
 pokemonRepository.loadList().then(() => {
