@@ -11,7 +11,7 @@ This is a small web application with HTML, CSS and JavaScript that loads data fr
 - HTML
 - CSS
 - Javascript
-  -jQuery
+  - jQuery
   - Bootstrap
   
   
